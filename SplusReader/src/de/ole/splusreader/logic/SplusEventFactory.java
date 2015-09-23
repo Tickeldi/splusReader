@@ -1,6 +1,5 @@
 package de.ole.splusreader.logic;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
@@ -10,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -18,9 +18,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
-import de.ole.splusreader.base.SplusEventToCalendar;
-import de.ole.splusreader.logic.calendarPlugins.SplusToICalendar;
 
 /**
  * This Class extracts data from the ostfalia splus calendar
@@ -562,6 +559,17 @@ public class SplusEventFactory {
 		cal.setTime(to);
 		int lastWeek = cal.get(Calendar.WEEK_OF_YEAR);
 		System.out.println(lastWeek);
+		
+		List<SplusEvent> events = getEventsBetweenWeeks(firstWeek, lastWeek);
+		
+		Iterator<SplusEvent> iterator = events.iterator();
+		
+		while(iterator.hasNext()) {
+			SplusEvent event = iterator.next();
+			if(event.getStart().compareTo(from) < 0
+					&& event.getEnd().compareTo(to) > 0)
+				iterator.remove();
+		}
 		
 		return getEventsBetweenWeeks(firstWeek, lastWeek);
 	}
