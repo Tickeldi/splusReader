@@ -11,24 +11,27 @@ setFaculty() --> setPlan() --> setStudyPath() --> setGroup() --> data
 
 
 
-Example:
-		SplusEventFactory factory = new SplusEventFactory();
+##Example:
+```
+
+SplusEventFactory factory = new SplusEventFactory();
+
+//Set faculty to Informatik
+factory.setFaculty("Informatik");
 		
-		//Set faculty to Informatik
-		factory.setFaculty("Informatik");
+//Set plan to Semesterpläne
+factory.setPlan("Semesterpläne");
 		
-		//Set plan to Semesterpläne
-		factory.setPlan("Semesterpläne");
+//Set IT-Management 5th semester (26th option in the list)
+factory.setStudyPath(25); 
 		
-		//Set IT-Management 5th semester
-		factory.setStudyPath(25); 
+//Instantiate the iCalWriter
+SplusEventToCalendar iCalWriter = new SplusToICalendar();
 		
-		//Instantiate the iCalWriter
-		SplusEventToCalendar iCalWriter = new SplusToICalendar();
-		
-		//Write all Events between weeks 39 and 52 including themselves
-		// to the file "semester.ical"
-		iCalWriter.writeToFile(
-				factory.getEventsBetweenWeeks(39,52), 
-				new File("semester.ical")
-				);
+//Write all Events between weeks 39 and 52 including themselves
+// to the file "semester.ical"
+iCalWriter.writeToFile(
+	factory.getEventsBetweenWeeks(39,52), 
+	new File("semester.ical")
+	);
+```
