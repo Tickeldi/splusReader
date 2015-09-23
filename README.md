@@ -4,10 +4,10 @@ This library extracts Events from the Ostfalia splus calendar (http://splus.ostf
 To avoid the MissingSettingException keep in mind the following dependencies.
 
 Normally:
-setFaculty() --> setPlan() --> setStudyPath() --> data
+>setFaculty() --> setPlan() --> setStudyPath() --> data
 
 If setPlan("Studentensetpläne") and there is more than one group to select:
-setFaculty() --> setPlan() --> setStudyPath() --> setGroup() --> data
+>setFaculty() --> setPlan() --> setStudyPath() --> setGroup() --> data
 
 
 
