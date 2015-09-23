@@ -25,7 +25,7 @@ public class WriteWholeSemester {
 		//Instantiate the iCalWriter
 		SplusEventToCalendar iCalWriter = new SplusToICalendar();
 		
-		//Write all Events between weeks 39 and 52 inclusively themselves
+		//Write all Events between weeks 39 and 52 including themselves
 		// to the file "semester.ical"
 		iCalWriter.writeToFile(
 				factory.getEventsBetweenWeeks(39,52), 
