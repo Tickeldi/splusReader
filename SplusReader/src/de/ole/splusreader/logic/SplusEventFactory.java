@@ -589,19 +589,5 @@ public class SplusEventFactory {
 		
 		return events;
 	}
-	
-	public static void main(String[] args) throws IOException, MissingSettingException {
-		SplusEventFactory factory = new SplusEventFactory();
-		factory.setFaculty("Informatik");
-		factory.setPlan("Semesterpläne");
-		factory.setStudyPath(25);
-		
-		
-		SplusEventToCalendar iCalWriter = new SplusToICalendar();
-		
-		iCalWriter.writeToFile(
-				factory.getEventsBetweenWeeks(39,52), 
-				new File("/tmp/semester.ical"));
-		
-	}
+
 }
