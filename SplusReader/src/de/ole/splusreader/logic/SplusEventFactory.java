@@ -38,6 +38,9 @@ public class SplusEventFactory {
 	private Option studyPath;
 	private Option group;
 	
+	//A cache at least for the faculty list
+	private List<Option> faculties;
+	
 	private static List<Option> getHyperlinkListFromURL(URL url) 
 			throws IOException{
 		List<Option> list = new ArrayList<>();
@@ -135,8 +138,13 @@ public class SplusEventFactory {
 	 * @return              A list of Faculties to choose from
 	 * @throws IOException  If there is no connection to splus.ostfalia.de for whatever reason
 	 */
-	public static List<Option> getFaculties() throws IOException {
-		return getHyperlinkListFromURL(new URL("http://splus.ostfalia.de/"));
+	public List<Option> getFaculties() throws IOException {
+		if(this.faculties == null)
+			faculties = getHyperlinkListFromURL(
+					new URL("http://splus.ostfalia.de/")
+					);
+
+		return faculties;
 	}
 	
 	private static List<Option> getOptionsFromForm(Document doc, String formName) {
@@ -173,10 +181,11 @@ public class SplusEventFactory {
 			throws IOException, MissingSettingException {
 		if(faculty == null) {
 			throw new MissingSettingException();
-		}
+		}		
+		
 		return getHyperlinkListFromURL(
 				new URL("http://splus.ostfalia.de/" + faculty.getValue())
-				);		
+				);
 	}
 	
 	/**
