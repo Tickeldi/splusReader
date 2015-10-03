@@ -30,24 +30,23 @@ public class SplusToICalendar implements SplusEventToCalendar{
 		ICalendar ical = new ICalendar();
 		
 		for(SplusEvent event:eventList) {
-		
-		VEvent vEvent = new VEvent();
-		vEvent.setLocation(event.getLocation());
-		vEvent.setOrganizer(new Organizer(event.getPresenter(), ""));
-		
-		String summaryString = event.getTitle();
-		
-		if(!event.getDescription().isEmpty())
-			summaryString += " -- " + event.getDescription();
-		
-		Summary summary = vEvent.setSummary(summaryString);
-		
-		summary.setLanguage("de-de");
-		
-		vEvent.setDateStart(event.getStart());
-		vEvent.setDateEnd(event.getEnd());
-		
-		ical.addEvent(vEvent);
+			VEvent vEvent = new VEvent();
+			vEvent.setLocation(event.getLocation());
+			vEvent.setOrganizer(new Organizer(event.getPresenter(), ""));
+			
+			String summaryString = event.getTitle();
+			
+			if(!event.getDescription().isEmpty())
+				summaryString += " -- " + event.getDescription();
+			
+			Summary summary = vEvent.setSummary(summaryString);
+			
+			summary.setLanguage("de-de");
+			
+			vEvent.setDateStart(event.getStart());
+			vEvent.setDateEnd(event.getEnd());
+			
+			ical.addEvent(vEvent);
 		}
 		
 		Biweekly.write(ical).go(outputstream);
