@@ -27,6 +27,10 @@ public final class Option {
 	public String toString() {
 		return number + " " + title + " (" + value + ")";
 	}
+	
+	public Option clone() {
+		return new Option(number, title, value);
+	}
 
 	@Override
 	public int hashCode() {
